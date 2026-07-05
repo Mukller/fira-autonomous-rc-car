@@ -1,0 +1,9 @@
+[submodule "external/pandas-team-avis-engine"]
+	path = external/pandas-team-avis-engine
+	url = https://github.com/Pandas-Team/Autonomous-Car-Simulation-Based-on-AVIS-Engine-FIRA-2021.git
+[submodule "external/fira-autonomous-cars-simulator"]
+	path = external/fira-autonomous-cars-simulator
+	url = https://github.com/Fira-Autonomous-Cars/FIRA-Autonomous-Cars-Simulator.git
+[submodule "external/arduino-raspberry-ros-car"]
+	path = external/arduino-raspberry-ros-car
+	url = https://github.com/COONEO/Arduino_Raspberry_ROS_Car.git
