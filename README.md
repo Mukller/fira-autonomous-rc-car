@@ -22,9 +22,12 @@ FIRA Autonomous Cars League состоит из двух дивизионов:
 обновляются по годам):
 
 - https://firaworldcup.org/leagues/fira-challenges/autonomous-cars/
-- https://firaworldcup.org/leagues/fira-challenges/autonomous-cars-simulation-u19-pro/
-- https://acc.firaworldcup.org/
-- http://www.pmm.edu.my/pusatdata/zxc/2025/fira25/rule/simursof/Autonomous_Racing_Car_Challenge_2025.pdf (правила физического дивизиона, 2025)
+- Правила Pro (Google Docs, актуальная версия): https://docs.google.com/document/d/1PgeKrsCEL-KnZFci-iQUgFKoVnY7qiXql9oOvQACfEY/
+- Правила Youth: https://docs.google.com/document/d/1pyhgvSQw7eaGDG0dzchA0VkbOYnGsd1_AVNhvs1iz8c/
+
+Своими словами пересказанная сводка ключевых требований (масштаб 1:10,
+лимит 600×450мм, Ackermann steering, множитель за onboard/offboard обработку)
+— в [`docs/regulation-summary.md`](docs/regulation-summary.md).
 
 Этот проект нацелен на **Physical Division** (1:10 RC-машина).
 
@@ -33,8 +36,18 @@ FIRA Autonomous Cars League состоит из двух дивизионов:
 ```
 models/     — 3D-модель шасси (STL/3MF) для печати
 external/   — референсные проекты, подключены как git submodules (см. ниже)
-docs/       — заметки по интеграции, план работ
+docs/       — регламент, электронная схема, план адаптации алгоритмов
+ros_ws/     — ROS 2 пакет fira_car_control: каркас нод управления рулём/скоростью
+tools/      — вспомогательные скрипты (например, разбор геометрии STL)
 ```
+
+## Документация
+
+- [`docs/regulation-summary.md`](docs/regulation-summary.md) — сводка регламента
+- [`docs/electronics-bom.md`](docs/electronics-bom.md) — электронная схема, BOM,
+  реальные размеры деталей (посчитаны из STL скриптом `tools/stl_bbox.py`)
+- [`docs/lane-detection-adaptation.md`](docs/lane-detection-adaptation.md) —
+  план адаптации алгоритма детекции полосы из симулятора под реальную камеру
 
 ## Используемые внешние материалы (атрибуция)
 
@@ -69,15 +82,26 @@ docs/       — заметки по интеграции, план работ
 
 ## Roadmap
 
-- [ ] Изучить полный регламент Physical Division 2025/2026 (PDF выше)
-- [ ] Подобрать электронную начинку (Raspberry Pi/Arduino, серво, ESC, камера/лидар)
-      под геометрию модели NITROUS
-- [ ] Портировать/адаптировать ROS-ноды из `arduino-raspberry-ros-car` под своё железо
-- [ ] Адаптировать алгоритмы детекции полос/знаков из `pandas-team-avis-engine`
-      под реальную камеру (а не симулятор)
-- [ ] Настроить сборку/прошивку Arduino для управления рулём и скоростью
-- [ ] Собрать и протестировать физическое шасси по модели из `models/`
+- [x] Изучить регламент Physical Division (сводка в `docs/regulation-summary.md`,
+      габариты модели проверены против лимитов — с запасом)
+- [x] Разобрать электронную схему и BOM под геометрию NITROUS
+      (`docs/electronics-bom.md`, размеры посчитаны из STL)
+- [x] Написать план адаптации детекции полосы под реальную камеру
+      (`docs/lane-detection-adaptation.md`)
+- [x] Создать каркас ROS 2 нод управления рулём/скоростью (`ros_ws/`) —
+      требует реальной камеры и калибровки для доводки
+- [ ] Закупить электронику по BOM (Raspberry Pi/Jetson, камера, Arduino/ESP32,
+      H-мост/ESC)
+- [ ] Написать `tools/calibrate_camera.py` и `tools/calibrate_hsv.py`
+- [ ] Спроектировать и напечатать крепление камеры (в оригинальной модели
+      его нет — автор не делал автономное вождение по камере)
+- [ ] Собрать физическое шасси по модели из `models/`
+- [ ] Прошить микроконтроллер привода (серво + DC-мотор), проверить ШИМ
+      по параметрам из `docs/electronics-bom.md`
+- [ ] Довести `lane_detection_node.py` на реальных кадрах с трассы
 - [ ] Провести первый заезд на тестовой трассе
+- [ ] Проверить открытые вопросы регламента на 2026 год
+      (см. чеклист в `docs/regulation-summary.md`)
 - [ ] Подготовить документацию/видео для подачи на соревнование
 
 ## Лицензия собственного кода
