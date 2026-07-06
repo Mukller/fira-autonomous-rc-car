@@ -29,4 +29,14 @@ def generate_launch_description():
             name='speed_control_node',
             output='screen',
         ),
+        Node(
+            package='fira_car_control',
+            executable='serial_bridge_node',
+            name='serial_bridge_node',
+            output='screen',
+            parameters=[{
+                'serial_port': '/dev/ttyUSB0',
+                'baud_rate': 115200,
+            }],
+        ),
     ])

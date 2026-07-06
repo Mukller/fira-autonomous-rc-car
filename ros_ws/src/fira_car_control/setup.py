@@ -27,6 +27,7 @@ setup(
             'lane_detection_node = fira_car_control.lane_detection_node:main',
             'steering_control_node = fira_car_control.steering_control_node:main',
             'speed_control_node = fira_car_control.speed_control_node:main',
+            'serial_bridge_node = fira_car_control.serial_bridge_node:main',
         ],
     },
 )
