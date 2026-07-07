@@ -3,18 +3,21 @@
 Subscribes to 'lane_offset' (std_msgs/Float32, pixels — positive means the
 lane center is to the right of the image center) and publishes a servo
 command in degrees on 'steering_angle_deg' for the drive microcontroller
-(Arduino/ESP32) to consume over serial (see tools/serial_bridge.py, not yet
-written — roadmap item).
+(Arduino/ESP32) to consume over serial (see serial_bridge_node.py).
 
-Starting point is a simple P controller; the plan is to add integral term
-once real-world response (steering slack, servo deadband) is measured on
-the physical car, and to add clamping tuned to the actual MG90s + Ackermann
-linkage (Print-09_Stearing / Print-11_Bridge) throw limits.
+The P-controller math lives in algorithms.py so it can be unit-tested
+without rclpy installed. Starting point is a simple P controller; the plan
+is to add an integral term once real-world response (steering slack, servo
+deadband) is measured on the physical car, and to tune clamping to the
+actual MG90s + Ackermann linkage (Print-09_Stearing / Print-11_Bridge)
+throw limits.
 """
 
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
+
+from fira_car_control.algorithms import steering_angle_from_offset
 
 
 class SteeringControlNode(Node):
@@ -40,10 +43,8 @@ class SteeringControlNode(Node):
         self.get_logger().info('steering_control_node started')
 
     def on_offset(self, msg: Float32) -> None:
-        deflection = self.kp * msg.data
-        deflection = max(
-            -self.max_deflection_deg, min(self.max_deflection_deg, deflection))
-        angle = self.center_angle_deg + deflection
+        angle = steering_angle_from_offset(
+            msg.data, self.kp, self.center_angle_deg, self.max_deflection_deg)
         self.angle_pub.publish(Float32(data=angle))
 
 
