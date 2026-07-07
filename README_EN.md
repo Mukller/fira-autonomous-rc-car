@@ -111,6 +111,9 @@ reusable) is in [`EXTERNAL_SOURCES.md`](EXTERNAL_SOURCES.md).
       untested on real hardware (no board/H-bridge on hand yet)
 - [x] Write `tools/calibrate_camera.py` and `tools/calibrate_hsv.py` —
       ready to run as soon as a real camera is available
+- [x] Extract pure logic (lane detection, steering/speed controllers) into
+      `algorithms.py` and cover it with pytest (12 tests, actually run and
+      passing — the only part of the stack verified so far, not just written)
 - [ ] Buy the electronics per the BOM (Raspberry Pi/Jetson, camera,
       Arduino/ESP32, H-bridge/ESC)
 - [ ] Design and print a camera mount (the original model has none — the

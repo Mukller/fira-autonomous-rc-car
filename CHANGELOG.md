@@ -40,9 +40,19 @@ release. This section tracks work since the project started on GitHub
   that ready-made platforms like DonkeyCar/JetRacer are allowed in Pro
   (banned only in Youth), Pro vs Youth obstacle-course difference
 
+### Added (cont.)
+- `fira_car_control/algorithms.py` — lane-offset math, smoothing, steering
+  P-controller, and throttle falloff extracted from the ROS nodes into
+  plain functions, plus `test/test_algorithms.py` (12 pytest cases,
+  including synthetic-frame lane detection). This is the first part of the
+  control stack that has actually been run and verified, not just written
+  — it doesn't need rclpy or a real camera, only opencv-python/numpy/pytest
+
 ### Known limitations
 - ROS nodes and firmware are untested on physical hardware — no camera,
-  microcontroller, or H-bridge has been acquired yet (see open issues)
+  microcontroller, or H-bridge has been acquired yet (see open issues).
+  The pixel-math in `algorithms.py` is unit-tested; the rclpy wiring
+  around it (topics, timing, real camera frames) is not.
 - **Critical, unresolved:** the NITROUS chassis's actual track width and
   wheelbase haven't been measured against the regulation's 150-350mm /
   200-550mm minimums — the compact chassis size raises a real risk it
