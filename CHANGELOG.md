@@ -31,10 +31,20 @@ release. This section tracks work since the project started on GitHub
   and HSV threshold calibration utilities
 - `EXTERNAL_SOURCES.md` — extracted reference material and authorship for
   every external repository/link used, for future reuse
+- Standard repo file set (`LICENSE.md`, `CHANGELOG.md`, `CODE_OF_CONDUCT.md`,
+  `CONTRIBUTING.md`, `RELEASE_INFO.md`), `README_EN.md` mirror with
+  language switcher, GitHub topics/description
+- Deeper regulation research: track width (150-350mm) and wheelbase
+  (200-550mm) limits, confirmation that IR line-following sensors are
+  banned (camera-based detection is effectively mandatory), confirmation
+  that ready-made platforms like DonkeyCar/JetRacer are allowed in Pro
+  (banned only in Youth), Pro vs Youth obstacle-course difference
 
 ### Known limitations
 - ROS nodes and firmware are untested on physical hardware — no camera,
   microcontroller, or H-bridge has been acquired yet (see open issues)
-- `docs/regulation-summary.md` has an explicit checklist of regulation
-  details (mass limits, sensor restrictions, 2026 dates) still to confirm
-  against the official document
+- **Critical, unresolved:** the NITROUS chassis's actual track width and
+  wheelbase haven't been measured against the regulation's 150-350mm /
+  200-550mm minimums — the compact chassis size raises a real risk it
+  falls short of the wheelbase minimum (see `docs/regulation-summary.md`)
+- 2026 season dates not found in the regulation document yet

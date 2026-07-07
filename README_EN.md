@@ -120,8 +120,15 @@ reusable) is in [`EXTERNAL_SOURCES.md`](EXTERNAL_SOURCES.md).
       (`firmware/drive_controller/README.md`)
 - [ ] Tune `lane_detection_node.py` on real track footage
 - [ ] Run the first test-track drive
-- [ ] Confirm the open regulation questions for the 2026 season
-      (see the checklist in `docs/regulation-summary.md`)
+- [x] Confirm the open regulation questions — most are resolved (see
+      `docs/regulation-summary.md`): no mass limit, IR line-following
+      sensors are banned (camera is mandatory, not optional), ready-made
+      platforms are allowed in Pro. **One critical item remains open**:
+      NITROUS chassis track width (150-350mm) and wheelbase (200-550mm)
+      haven't been measured — the compact model may not meet these minimums
+- [ ] Measure track width and wheelbase during chassis assembly, confirm
+      regulation compliance (see the warning in `docs/regulation-summary.md`)
+- [ ] Confirm 2026 season dates closer to the event
 - [ ] Prepare documentation/video for competition submission
 
 ## License for original code
