@@ -117,8 +117,13 @@ reusable) is in [`EXTERNAL_SOURCES.md`](EXTERNAL_SOURCES.md).
 - [ ] Buy the electronics per the BOM — a shopping list with search links
       and rough prices is ready in [`docs/purchase-list.md`](docs/purchase-list.md),
       the actual purchase/payment is manual
-- [ ] Design and print a camera mount (the original model has none — the
-      author never did camera-based autonomous driving)
+- [x] Draft a camera mount design —
+      [`mounts/camera_mount.scad`](mounts/camera_mount.scad), Camera Module 3
+      board dimensions taken from the official Raspberry Pi mechanical
+      drawing, slots instead of tight holes to allow for reading error.
+      **Not compiled** (OpenSCAD couldn't be installed in this environment)
+      — open and check before printing
+- [ ] Print and fit the camera mount against the real board
 - [ ] Assemble the physical chassis from `models/`
 - [ ] Run the firmware bring-up checklist on real hardware
       (`firmware/drive_controller/README.md`)

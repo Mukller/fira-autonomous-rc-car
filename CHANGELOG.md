@@ -48,11 +48,25 @@ release. This section tracks work since the project started on GitHub
   control stack that has actually been run and verified, not just written
   — it doesn't need rclpy or a real camera, only opencv-python/numpy/pytest
 
+### Added (cont. 2)
+- `docs/purchase-list.md` — shopping list with AliExpress search links and
+  rough price ranges for every BOM item, for issue #1 (buying/paying is a
+  manual step, not something automated here)
+- `mounts/camera_mount.scad` — draft camera mount for Raspberry Pi Camera
+  Module 3, board dimensions taken from the official Raspberry Pi
+  mechanical drawing, oversized slots instead of tight holes to tolerate
+  reading error off the PDF. **Not compiled** — no OpenSCAD install
+  available in this environment (chocolatey failed on a permissions error,
+  winget install was cancelled by a UAC prompt this non-interactive
+  session couldn't answer); only a brace/paren balance sanity check was run
+
 ### Known limitations
 - ROS nodes and firmware are untested on physical hardware — no camera,
   microcontroller, or H-bridge has been acquired yet (see open issues).
   The pixel-math in `algorithms.py` is unit-tested; the rclpy wiring
   around it (topics, timing, real camera frames) is not.
+- `mounts/camera_mount.scad` has not been rendered/compiled — open it in
+  OpenSCAD and check before printing
 - **Critical, unresolved:** the NITROUS chassis's actual track width and
   wheelbase haven't been measured against the regulation's 150-350mm /
   200-550mm minimums — the compact chassis size raises a real risk it
