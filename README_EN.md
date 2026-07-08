@@ -114,8 +114,9 @@ reusable) is in [`EXTERNAL_SOURCES.md`](EXTERNAL_SOURCES.md).
 - [x] Extract pure logic (lane detection, steering/speed controllers) into
       `algorithms.py` and cover it with pytest (12 tests, actually run and
       passing — the only part of the stack verified so far, not just written)
-- [ ] Buy the electronics per the BOM (Raspberry Pi/Jetson, camera,
-      Arduino/ESP32, H-bridge/ESC)
+- [ ] Buy the electronics per the BOM — a shopping list with search links
+      and rough prices is ready in [`docs/purchase-list.md`](docs/purchase-list.md),
+      the actual purchase/payment is manual
 - [ ] Design and print a camera mount (the original model has none — the
       author never did camera-based autonomous driving)
 - [ ] Assemble the physical chassis from `models/`
